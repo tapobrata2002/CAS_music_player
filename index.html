@@ -13,126 +13,158 @@
 </head>
 <body>
 
-  <!-- Native Audio Engine -->
+  <!-- Audio Engine -->
   <audio id="audioEngine" preload="metadata"></audio>
 
-  <div class="player-container">
-
-    <!-- Top Navigation -->
-    <header class="top-nav">
-      <button class="nav-icon-btn" id="muteBtn" aria-label="Toggle Mute">
+  <div class="app-viewport">
+    
+    <!-- Top Header: Mute Left, Centered Track Details, Symmetry Spacer -->
+    <header class="app-header">
+      <button class="nav-btn" id="muteBtn" aria-label="Toggle Mute">
         <svg id="muteIcon" width="18" height="18" viewBox="0 0 24 24">
           <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
         </svg>
       </button>
 
-      <div class="brand-header">
-        <div class="brand-title">CIGARETTES AFTER SEX</div>
-        <div class="brand-sub">33 ⅓ rpm • stereo</div>
+      <div class="header-titles">
+        <span class="header-band">cigarettes after sex</span>
+        <span class="header-track-name" id="headerSongTitle">apocalypse</span>
       </div>
 
-      <button class="nav-icon-btn" id="drawerTrigger" aria-label="Open Catalogue">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 6h16v1.5H4zm0 5.5h16v1.5H4zm0 5.5h16v1.5H4z"/></svg>
-      </button>
+      <div class="header-spacer"></div>
     </header>
 
-    <!-- Track Details -->
-    <section class="title-block">
-      <h1 class="track-name" id="trackName">apocalypse</h1>
-      <p class="track-release" id="trackRelease">cigarettes after sex — 2017</p>
-    </section>
+    <!-- Main Viewport Area -->
+    <main class="player-body">
 
-    <!-- Center Stage: Sleeve + Silky Smooth Slide-Out Vinyl Platter -->
-    <main class="artwork-viewport">
-      <div class="record-assembly" id="recordAssembly">
+      <!-- Borderless Center Stage: Album Sleeve + Slide-Out Vinyl Platter -->
+      <section class="card-display">
+        <div class="card-glow" id="cardGlow"></div>
 
-        <!-- Outer Platter Handles the Smooth Slide In & Out -->
-        <div class="vinyl-platter" id="vinylPlatter">
-          <!-- Inner Disc Handles Continuous 33 RPM Rotation -->
-          <div class="vinyl-disc">
-            <div class="vinyl-core">
-              <span class="core-speed">33 RPM</span>
-              <div class="spindle-hole"></div>
-              <span class="core-tag">STEREO</span>
+        <div class="stage-frame" id="stageFrame">
+          
+          <!-- Outer Vinyl Platter (Slide-Out ~33%) -->
+          <div class="vinyl-platter" id="vinylPlatter">
+            <div class="vinyl-disc">
+              <div class="vinyl-core">
+                <span class="core-text">33 RPM</span>
+                <div class="spindle-hole"></div>
+                <span class="core-text">CAS</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Square Matte Sleeve Jacket -->
-        <div class="sleeve-jacket" id="sleeveJacket">
-          <img src="assets/covers/cas2017.jpg" alt="Album Cover" id="coverArt" />
-
-          <div class="sleeve-editorial-overlay">
-            <div class="overlay-top">
-              <span>LP — NOIR</span>
-              <span id="sideIndicator">SIDE A — 04</span>
-            </div>
-            <div class="overlay-bottom">
-              <!-- <span class="editorial-brand">cigarettes after sex</span> -->
-              <span class="editorial-sub">EXCLUSIVE MONOCHROME EDITION</span>
+          <!-- Album Sleeve Front Jacket -->
+          <div class="sleeve-jacket" id="sleeveJacket">
+            <img src="assets/covers/cas2017.jpg" alt="Album Cover" id="coverArt" />
+            <div class="sleeve-badge">
+              <span id="badgeSide">side a</span>
+              <span>cas • mono</span>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
+      </section>
+
+      <!-- Track Information Block -->
+      <section class="meta-section">
+        <div class="meta-left">
+          <h1 class="main-song-title" id="songTitle">apocalypse</h1>
+          <p class="main-album-subtitle" id="albumSubtitle">cigarettes after sex • 2017</p>
+        </div>
+        <button class="favorite-btn" id="favoriteBtn" aria-label="Favorite Track">
+          <svg width="20" height="20" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+      </section>
+
+      <!-- Scrubbing Section -->
+      <section class="scrubber-section">
+        <div class="scrub-bar" id="scrubBar">
+          <div class="scrub-progress" id="scrubProgress">
+            <div class="scrub-thumb"></div>
+          </div>
+        </div>
+        <div class="scrub-timestamps">
+          <span id="currentTime">0:00</span>
+          <span id="durationTime">4:50</span>
+        </div>
+      </section>
+
+      <!-- Playback Deck Controls -->
+      <section class="deck-controls">
+        <button class="deck-btn" id="shuffleBtn" aria-label="Shuffle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
+        </button>
+
+        <button class="deck-btn" id="prevBtn" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+
+        <button class="deck-play" id="playBtn" aria-label="Play">
+          <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+
+        <button class="deck-btn" id="nextBtn" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
+
+        <button class="deck-btn" id="repeatBtn" aria-label="Repeat">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+        </button>
+      </section>
+
     </main>
 
-    <!-- Scrubber Timeline -->
-    <section class="scrubber-section">
-      <div class="progress-track" id="progressTrack">
-        <div class="progress-fill" id="progressFill">
-          <div class="progress-handle"></div>
-        </div>
+    <!-- Bottom Navigation Bar: Liked Songs (Left) | Search (Middle) | Library (Right) -->
+    <nav class="bottom-bar">
+      <button class="bottom-nav-item" id="navLiked">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span>liked</span>
+      </button>
+
+      <button class="bottom-nav-item" id="navSearch">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <span>search</span>
+      </button>
+
+      <button class="bottom-nav-item" id="navLibrary">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+        <span>library</span>
+      </button>
+    </nav>
+
+    <!-- Search Modal Drawer -->
+    <div class="modal-search" id="searchModal">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="search any cas song..." />
+        <button class="close-modal-btn" id="closeSearchBtn">✕</button>
       </div>
-      <div class="time-readout">
-        <span id="currentTime">0:00</span>
-        <span id="remainingTime">-0:00</span>
-      </div>
-    </section>
-
-    <!-- Playback Controls -->
-    <footer class="deck-controls">
-      <button class="deck-btn" id="shuffleBtn" aria-label="Shuffle">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
-      </button>
-
-      <button class="deck-btn" id="prevBtn" aria-label="Previous">
-        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-      </button>
-
-      <button class="deck-play" id="playBtn" aria-label="Play">
-        <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-
-      <button class="deck-btn" id="nextBtn" aria-label="Next">
-        <svg width="22" height="22" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-      </button>
-
-      <button class="deck-btn" id="repeatBtn" aria-label="Repeat">
-        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-      </button>
-    </footer>
-
-    <!-- Bottom Pill Trigger -->
-    <div class="archive-pill" id="archiveTrigger">
-      <div class="archive-dash"></div>
-      <span class="archive-label">ARCHIVE LIST</span>
+      <div class="search-results" id="searchResults"></div>
     </div>
 
-    <!-- Catalogue Slide-Up Drawer -->
-    <aside class="archive-sheet" id="archiveSheet">
-      <div class="sheet-top">
-        <span class="sheet-title">CATALOGUE</span>
-        <button class="nav-icon-btn" id="closeArchiveBtn" aria-label="Close">
-          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
+    <!-- Liked Songs Slide-Up Drawer -->
+    <aside class="catalogue-drawer" id="likedDrawer">
+      <div class="drawer-header">
+        <span class="drawer-heading">liked songs</span>
+        <button class="close-modal-btn" id="closeLikedBtn">✕</button>
       </div>
-
-      <nav class="album-chips" id="albumChips"></nav>
-      <div class="sheet-tracklist" id="sheetTracklist"></div>
+      <div class="catalogue-tracklist" id="likedTracklist"></div>
     </aside>
 
-    <div class="sheet-overlay" id="sheetOverlay"></div>
+    <!-- Library Catalogue Slide-Up Drawer -->
+    <aside class="catalogue-drawer" id="catalogueDrawer">
+      <div class="drawer-header">
+        <span class="drawer-heading">library catalogue</span>
+        <button class="close-modal-btn" id="closeDrawerBtn">✕</button>
+      </div>
+
+      <div class="album-pills" id="albumPills"></div>
+      <div class="catalogue-tracklist" id="catalogueTracklist"></div>
+    </aside>
+
+    <div class="backdrop" id="backdrop"></div>
 
   </div>
 
